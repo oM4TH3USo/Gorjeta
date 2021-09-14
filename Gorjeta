@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <source src="script_calculadora.js">
+    <title>Calculadora de Gorjeta</title>
+</head>
+<body>
+    <header>
+    <h1>Calculadora de Gorjeta</h1>
+    </header>
+    <main>
+        <form>
+            <fieldset>
+            <label for="cliente"> Valor da conta em R$:</label>
+            <input type="number" name="cliente" id="cliente">
+            </fieldset>
+            <fieldset>
+                <label for="qualidade">Como foi o atendimento?</label>
+                <select name="qualidade" id="qualidade" required>
+                    <option value="0.25">Incrível &#45; &#37;</option>
+                    <option value="0.20">Ótimo &#45; &#37;</option>
+                    <option value="0.15">Bom &#45; &#37;</option>
+                    <option value="0.10">Aceitável &#45; &#37;</option>
+                    <option value="0.05">Ruim &#45; &#37;</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <label for="quantidade">Quantas pessoas irão pagar?</label>
+                    <input type="number" name="quantidade" id="quantidade" min="1" value="1" required>
+            </fieldset>
+            <input type="submit" value="Calcular">
+        </form>
+        <div id="tip"></div>
+    </main>
+</body>
+</html>
+
+gorjeta js:
+
+ function calculo(event){
+        event.preventDefault();
+        
+        const cliente = document.getElementById("cliente").value;
+        const qualidade = document.getElementById("qualidade").value;
+        const quantidade = document.getElementById("quantidade").value;
+        const tip = document.getElementById("tip");
+        console.log(cliente);
+            if(cliente == '' || cliente <= 0 || quantidade < 1 ){
+                tip.innerHTML = `Por favor, preencha corretamente os campos acima!`;
+            }else{
+            let total = (cliente * qualidade / quantidade);
+            tip.innerHTML = `<span> R$ ${total} <span>`;
+            
+            document.getElementById("tip").value=total;
+        }
+    }
